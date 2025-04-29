@@ -29,7 +29,7 @@ public class CrewListToCrewListDTOConverter implements Converter <CrewList, Crew
                 source.getGame().getGameDate(),
                 source.getGame().getVenue(),
                 source.getGame().getOpponent(),
-                crewedUserDTOS
+                crewedUsers
         );
     }
 }
