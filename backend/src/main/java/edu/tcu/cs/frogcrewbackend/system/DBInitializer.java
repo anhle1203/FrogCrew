@@ -41,9 +41,9 @@ public class DBInitializer implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Member mem1 = new Member();
 //        mem1.setId(1);
-        mem1.setFirstName("Tony");
-        mem1.setLastName("Stark");
-        mem1.setEmail("ts@gmail.com");
+        mem1.setFirstName("Bruce");
+        mem1.setLastName("Wayne");
+        mem1.setEmail("bw@gmail.com");
         mem1.setPhoneNumber("123-456-7890");
         mem1.setPassword("password1");
         mem1.setRole("ADMIN MEMBER");
@@ -51,27 +51,27 @@ public class DBInitializer implements CommandLineRunner {
 
         Member mem2 = new Member();
 //        mem2.setId(2);
-        mem2.setFirstName("Captain");
-        mem2.setLastName("America");
-        mem2.setEmail("ca@gmail.com");
+        mem2.setFirstName("Clark");
+        mem2.setLastName("Kent");
+        mem2.setEmail("ck@gmail.com");
         mem2.setPhoneNumber("987-654-3210");
         mem2.setPassword("password2");
         mem2.setRole("ADMIN MEMBER");
         mem2.setPositions("Videographer Planner");
 
         Member mem3 = new Member();
-        mem3.setFirstName("Alexander");
-        mem3.setLastName("McQueen");
-        mem3.setEmail("am@gmail.com");
+        mem3.setFirstName("Diana");
+        mem3.setLastName("Prince");
+        mem3.setEmail("dp@gmail.com");
         mem3.setPhoneNumber("222-255-5555");
         mem3.setPassword("password3");
         mem3.setRole("MEMBER");
         mem3.setPositions("Photographer Reporter");
 
         Member mem4 = new Member();
-        mem4.setFirstName("Stephen");
-        mem4.setLastName("Curry");
-        mem4.setEmail("sc@gmail.com");
+        mem4.setFirstName("Hal");
+        mem4.setLastName("Jordan");
+        mem4.setEmail("hj@gmail.com");
         mem4.setPhoneNumber("135-792-4680");
         mem4.setPassword("password4");
         mem4.setRole("MEMBER");
@@ -88,20 +88,20 @@ public class DBInitializer implements CommandLineRunner {
 
         GameSchedule schedule2 = new GameSchedule();
         schedule2.setSport("Football");
-        schedule2.setSeason("2024-2025");
+        schedule2.setSeason("2023-2024");
 
         Game game1 = new Game();
-        game1.setGameDate("2025-01-01");
+        game1.setGameDate("2024-10-10");
         game1.setSchedule(schedule1);
         game1.setVenue("Amon G. Carter");
-        game1.setOpponent("Baylor University");
+        game1.setOpponent("Texas Longhorn");
         game1.setFinalized(Boolean.FALSE);
 
         Game game2 = new Game();
         game2.setGameDate("2022-01-10");
         game2.setSchedule(schedule1);
         game2.setVenue("Amon G. Carter");
-        game2.setOpponent("Texas A&M");
+        game2.setOpponent("Baylor");
         game2.setFinalized(Boolean.TRUE);
 
         schedule1.addGame(game1);
