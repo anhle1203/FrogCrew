@@ -8,9 +8,13 @@ import edu.tcu.cs.frogcrewbackend.game.*;
 import edu.tcu.cs.frogcrewbackend.member.Member;
 import edu.tcu.cs.frogcrewbackend.member.UserRepository;
 import edu.tcu.cs.frogcrewbackend.member.UserService;
+import edu.tcu.cs.frogcrewbackend.notification.Notification;
+import edu.tcu.cs.frogcrewbackend.notification.NotificationRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -21,52 +25,54 @@ public class DBInitializer implements CommandLineRunner {
     private final GameRepository gameRepository;
     private final CrewedUserRepository crewedUserRepository;
     private final CrewListRepository crewListRepository;
+    private final NotificationRepository notificationRepository;
 
-    public DBInitializer(UserRepository userRepository, UserService userService, GameScheduleRepository gameScheduleRepository, GameRepository gameRepository, CrewedUserRepository crewedUserRepository, CrewListRepository crewListRepository) {
+    public DBInitializer(UserRepository userRepository, UserService userService, GameScheduleRepository gameScheduleRepository, GameRepository gameRepository, CrewedUserRepository crewedUserRepository, CrewListRepository crewListRepository, NotificationRepository notificationRepository) {
         this.userRepository = userRepository;
         this.userService = userService;
         this.gameScheduleRepository = gameScheduleRepository;
         this.gameRepository = gameRepository;
         this.crewedUserRepository = crewedUserRepository;
         this.crewListRepository = crewListRepository;
+        this.notificationRepository = notificationRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
         Member mem1 = new Member();
 //        mem1.setId(1);
-        mem1.setFirstName("Bruce");
-        mem1.setLastName("Wayne");
-        mem1.setEmail("bw@gmail.com");
-        mem1.setPhoneNumber("1234567890");
+        mem1.setFirstName("Tony");
+        mem1.setLastName("Stark");
+        mem1.setEmail("ts@gmail.com");
+        mem1.setPhoneNumber("123-456-7890");
         mem1.setPassword("password1");
         mem1.setRole("ADMIN MEMBER");
         mem1.setPositions("Director");
 
         Member mem2 = new Member();
 //        mem2.setId(2);
-        mem2.setFirstName("Clark");
-        mem2.setLastName("Kent");
-        mem2.setEmail("ck@gmail.com");
-        mem2.setPhoneNumber("9876543210");
+        mem2.setFirstName("Captain");
+        mem2.setLastName("America");
+        mem2.setEmail("ca@gmail.com");
+        mem2.setPhoneNumber("987-654-3210");
         mem2.setPassword("password2");
         mem2.setRole("ADMIN MEMBER");
         mem2.setPositions("Videographer Planner");
 
         Member mem3 = new Member();
-        mem3.setFirstName("Diana");
-        mem3.setLastName("Prince");
-        mem3.setEmail("dp@gmail.com");
-        mem3.setPhoneNumber("2222555555");
+        mem3.setFirstName("Alexander");
+        mem3.setLastName("McQueen");
+        mem3.setEmail("am@gmail.com");
+        mem3.setPhoneNumber("222-255-5555");
         mem3.setPassword("password3");
         mem3.setRole("MEMBER");
         mem3.setPositions("Photographer Reporter");
 
         Member mem4 = new Member();
-        mem4.setFirstName("Hal");
-        mem4.setLastName("Jordan");
-        mem4.setEmail("hj@gmail.com");
-        mem4.setPhoneNumber("1357924680");
+        mem4.setFirstName("Stephen");
+        mem4.setLastName("Curry");
+        mem4.setEmail("sc@gmail.com");
+        mem4.setPhoneNumber("135-792-4680");
         mem4.setPassword("password4");
         mem4.setRole("MEMBER");
         mem4.setPositions("Reporter Supervisor");
@@ -82,20 +88,20 @@ public class DBInitializer implements CommandLineRunner {
 
         GameSchedule schedule2 = new GameSchedule();
         schedule2.setSport("Football");
-        schedule2.setSeason("2023-2024");
+        schedule2.setSeason("2024-2025");
 
         Game game1 = new Game();
-        game1.setGameDate("2024-10-10");
+        game1.setGameDate("2025-01-01");
         game1.setSchedule(schedule1);
         game1.setVenue("Amon G. Carter");
-        game1.setOpponent("Texas Longhorn");
+        game1.setOpponent("Baylor University");
         game1.setFinalized(Boolean.FALSE);
 
         Game game2 = new Game();
         game2.setGameDate("2022-01-10");
         game2.setSchedule(schedule1);
         game2.setVenue("Amon G. Carter");
-        game2.setOpponent("Baylor");
+        game2.setOpponent("Texas A&M");
         game2.setFinalized(Boolean.TRUE);
 
         schedule1.addGame(game1);
@@ -135,5 +141,16 @@ public class DBInitializer implements CommandLineRunner {
 
         crewListRepository.save(clist1);
         gameRepository.save(game1);
+
+        // notifications
+        Notification noti1 = new Notification();
+        noti1.setMessage("Need to be at all games this season");
+        noti1.setRead(Boolean.FALSE);
+        noti1.setDate("11/10/2024 14:00:00");
+
+        mem3.addNotification(noti1);
+        noti1.setUser(mem3);
+        this.userRepository.save(mem3);
+        this.notificationRepository.save(noti1);
     }
 }

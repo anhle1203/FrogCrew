@@ -71,6 +71,7 @@ public class SecurityConfiguration {
                 // It is recommended to secure your application at the API endpoint level.
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         .requestMatchers(HttpMethod.POST, this.baseUrl + "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, this.baseUrl + "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.GET, this.baseUrl + "/invite/**").permitAll()
                         .requestMatchers(HttpMethod.POST, this.baseUrl + "/invite/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.GET, this.baseUrl + "/crewMember/**").permitAll()
@@ -82,6 +83,8 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, this.baseUrl + "/crewList/**").permitAll()
                         .requestMatchers(HttpMethod.POST, this.baseUrl + "/crewList/**").hasAuthority("ROLE_ADMIN")
                         .requestMatchers(HttpMethod.POST, this.baseUrl + "/crewSchedule/**").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(HttpMethod.GET, this.baseUrl + "/notification/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, this.baseUrl + "/notification/**").permitAll()
                         .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll() // Explicitly fallback to antMatcher inside requestMatchers.
                         // Disallow everything else.
                         .anyRequest().authenticated() // Always a good idea to put this as last
